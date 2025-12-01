@@ -18,9 +18,9 @@ Each recipe includes:
 
 ---
 
-## 📚 Contents
+## 📚 Contents  
+- [Microfrontend Composition](./microfrontends/links-and-client-side-integration)  
 
-- **Microfrontends**  
 ---
 
 ## 🎯 Goals

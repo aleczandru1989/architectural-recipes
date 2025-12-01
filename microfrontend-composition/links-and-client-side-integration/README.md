@@ -27,7 +27,7 @@ We apply this recipe to our e‑commerce case study:
 
 ---
 
-## 📊Application Diagram
+## 📊Diagram
 ![Links and Client‑Side Integration Diagram](../diagrams/application.svg)
 
 ---
