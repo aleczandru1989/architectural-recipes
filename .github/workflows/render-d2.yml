@@ -21,7 +21,7 @@ jobs:
         run: |
           find . -name "*.d2" -type f | while read file; do
             out="${file%.d2}.svg"
-            d2 --layout=elk "$file" "$out"
+            d2 --layout=dagre "$file" "$out"
           done
 
       - name: Commit rendered SVGs
