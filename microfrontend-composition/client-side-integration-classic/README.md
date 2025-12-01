@@ -36,7 +36,6 @@ This recipe is implemented using:
 - **Angular** → framework for building MFEs and handling routing/navigation  
 - **JavaScript** → for dynamic transclusion and component mounting  
 - **CSS** → for styling and consistent UI across MFEs  
-- **Docker & Docker Compose** → for containerized deployment and orchestration of MFEs  
 
 ---
 
@@ -46,11 +45,12 @@ To run the example locally you will have to have docker installed on your machin
 1. **Clone the repository**
    ```bash
    git clone https://github.com/aleczandru1989/architectural-recipes.git.git
-   cd architectural-recipes/microfrontends/links-and-client-side-integration
+   cd architectural-recipes/microfrontends/links-and-client-side-integration/app
+   npm install
 
-2. **Start all MFEs with Docker Compose**
+2. **Start all MFEs**
    ```bash
-   docker compose -f docker-compose.yml up -d
+   npm run start
 
 3. **Access the application**
    - AppShell - http://localhost:5000

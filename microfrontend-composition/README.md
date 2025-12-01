@@ -26,4 +26,4 @@ The case study models a simplified **e‑commerce application** composed of mult
 ## 📚 Recipes
 We demonstrate multiple composition techniques, each documented in its own folder:
 
-- [`microfrontends/client-side-integration-classic`](./links-and-client-side-integration) → Links and Client‑Side Integration
+- [`microfrontends/client-side-integration-classic`](./client-side-integration-classic) → Links and Client‑Side Integration
