@@ -34,6 +34,10 @@ server: {
   group.decision -> nodejs: "Forward request" {
     label: "False"
   }
+
+  nodejs -> group.varnish {
+    label: "Response Headin"
+  }
 }
 
 browser -> server.group.varnish: "Get Heading"
