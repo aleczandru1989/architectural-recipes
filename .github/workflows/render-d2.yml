@@ -3,8 +3,8 @@ name: Render D2 diagrams
 on:
   push:
     paths:
-      - "**/*.d2"   # trigger when any .d2 file changes anywhere
-  workflow_dispatch:   # <-- enables manual trigger from Actions tab
+      - "**/*.d2"
+  workflow_dispatch:
 
 jobs:
   render:
@@ -26,8 +26,9 @@ jobs:
 
       - name: Commit rendered SVGs
         run: |
-          git config user.name "github-actions"
+          git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add **/*.svg
           git commit -m "Update rendered diagrams" || echo "No changes to commit"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push
