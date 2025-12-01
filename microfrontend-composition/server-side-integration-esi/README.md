@@ -85,7 +85,7 @@ Follow these steps to run the recipe locally:
 
 7. **Run Browser**
     ```bash
-    [v](http://localhost:8000)
+    http://localhost:8000
 
 
 
