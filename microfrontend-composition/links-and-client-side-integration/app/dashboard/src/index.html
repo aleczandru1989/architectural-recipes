@@ -9,5 +9,30 @@
 </head>
 <body>
   <app-root></app-root>
+
+  <div id="catalog-container"></div>
+
+  <div id="orders"></div>
+
+  <script>
+      async function loadTop5() {
+          // Dynamically load the remote script
+          await import('http://localhost:5002/components/top-5.js');
+          // Insert the custom element into the DOM
+          document.getElementById('catalog-container').innerHTML = '<top-recommended-products></top-recommended-products>';
+      }
+
+      loadTop5();
+
+
+       async function loadTopRecommendations() {
+          // Dynamically load the remote script
+          await import('http://localhost:5003/components/top-5.js');
+          // Insert the custom element into the DOM
+          document.getElementById('orders').innerHTML = '<top-orders></top-orders>';
+      }
+
+      loadTopRecommendations();
+  </script>
 </body>
 </html>
