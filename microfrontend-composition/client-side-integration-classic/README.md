@@ -40,7 +40,7 @@ This recipe is implemented using:
 ---
 
 ## ▶️ How to Use
-To run the example locally you will have to have docker installed on your machine:
+To run the example locally you will need to have node.js install and execute the following commands:
 
 1. **Clone the repository**
    ```bash
