@@ -26,7 +26,7 @@ jobs:
       - name: Commit rendered SVGs
         run: |
           git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add **/*.svg
           git commit -m "Update rendered diagrams" || echo "No changes to commit"
           git push
