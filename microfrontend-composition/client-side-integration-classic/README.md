@@ -45,14 +45,20 @@ To run the example locally you will have to have docker installed on your machin
 1. **Clone the repository**
    ```bash
    git clone https://github.com/aleczandru1989/architectural-recipes.git.git
-   cd architectural-recipes/microfrontends/links-and-client-side-integration/app
+
+2. ** Navigate to recipe **
+   ```bash
+   cd architectural-recipes/microfrontend-composition/client-side-integration-classic/app
+
+3. ** Install Packages **
+   ```bash
    npm install
 
-2. **Start all MFEs**
+4. **Start all MFEs**
    ```bash
    npm run start
 
-3. **Access the application**
+5. **Access the application**
    - AppShell - http://localhost:5000
    - Dashboard - http://localhost:5001
    - Product Catalog - http://localhost:5002
