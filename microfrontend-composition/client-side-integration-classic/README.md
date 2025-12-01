@@ -46,11 +46,11 @@ To run the example locally you will have to have docker installed on your machin
    ```bash
    git clone https://github.com/aleczandru1989/architectural-recipes.git.git
 
-2. ** Navigate to recipe **
+2. **Navigate to recipe**
    ```bash
    cd architectural-recipes/microfrontend-composition/client-side-integration-classic/app
 
-3. ** Install Packages **
+3. **Install Packages**
    ```bash
    npm install
 
