@@ -2,7 +2,6 @@ direction: down
 
 browser: {
   label: "Browser"
-  icon: "https://api.iconify.design/material-symbols/language.svg"
 }
 
 server: {
@@ -14,12 +13,12 @@ server: {
       shape: cloud
     }
 
-    decision: {
+    decision: { 
       shape: diamond
       label: "Is Resource \n Cached?"
     }
 
-    varnish -> decision: "Is Resource Cached?"
+    varnish -> decision
 
     decision -> varnish: "Return cached Heading" {
       style: dashed
