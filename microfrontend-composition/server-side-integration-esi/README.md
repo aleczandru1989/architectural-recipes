@@ -59,21 +59,34 @@ Follow these steps to run the recipe locally:
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-folder>
-
-
-- Run Docker Compose
-docker compose up -d
-- Install dependencies for the app
-cd app
-npm install
-- Start the Express server
-node server.js
+   git clone https://github.com/aleczandru1989/architectural-recipes.git.git
 
 
-- Open in browser
-http://localhost:8000
+2. **Navigate to recipe**
+   ```bash
+   cd architectural-recipes/microfrontend-composition/server-side-integration-esi
+
+
+3. **Run Docker Compose** 
+   ```bash
+   docker compose up -d
+
+4. **Navigate to recipe app**
+   ```bash
+   cd app
+
+5. **Install Packages**
+   ```bash
+   npm install
+
+6. **Run Express App**
+    ```bash
+    node server.js
+
+7. **Run Browser**
+    ```bash
+    [v](http://localhost:8000)
+
 
 
 
