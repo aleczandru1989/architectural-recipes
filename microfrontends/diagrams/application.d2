@@ -1,10 +1,51 @@
-explanation: |md
-  # I can do headers
-  - lists
-  - lists
-  - Ion
+direction: down
 
-  And other normal markdown stuff
-|
-# Explicitly declare, even though the default shape is rectangle
-explanation.shape: rectangle
+# Pages
+AppShell: {
+  label: "App Shell MFE"
+  style: { fill: "#d9f2d9"  }
+
+  NavBar: "Navigation" {
+    style: { fill: "#cce5ff"}    
+  }
+}
+
+DashboardMFE: {
+  style: { fill: "#d9f2d9"  }
+
+  Page: {
+    style: { fill: "#ffe5cc" }
+    RecommendationComponent: "Top 5 Products"
+    PurchaseHistoryComponent: "Top 5 Purchases"
+  }
+}
+
+
+ProductCatalogMFE: {
+  label: "Product Catalog MFE"
+  style: { fill: "#d9f2d9"  }
+  
+  Page: {
+    style: { fill: "#ffe5cc" }
+  }
+}
+
+
+PurchaseHistoryMFE: {
+  style: { fill: "#d9f2d9" }
+
+  Page: {
+    style: { fill: "#ffe5cc" }
+  }
+}
+
+AppShell.Navbar -> DashboardMFE.Page: "localhost:5001"
+AppShell.Navbar -> ProductCatalogMFE.Page: "localhost:5002/product-catalogs"
+AppShell.Navbar -> PurchaseHistoryMFE.Page: "localhost:5003/purchase-histories"
+
+
+DashboardMFE.Page.RecommendationComponent -> ProductCatalogMFE.Components.Top5: "localhost:5002/components/top-5"
+DashboardMFE.Page.PurchaseHistoryComponent -> PurchaseHistoryMFE.Components.Top5: "localhost:5003/components/top-5"
+
+
+
