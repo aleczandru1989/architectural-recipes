@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>AppShell</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .top-menu {
+      background-color: #1976d2;
+    }
+
+    .top-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .top-menu li {
+      margin-right: 20px;
+    }
+
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .top-menu a:hover {
+      text-decoration: underline;
+    }
+
+    .iframe-container {
+      margin-top: 20px;
+    }
+
+    a {
+      padding: 10px 5px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="top-menu">
+    <a id="dashboard" href="http://localhost:5001" target="content">Dashboard</a>
+    <a href="http://localhost:5002" target="content">Product Catalog</a>
+    <a href="http://localhost:5003" target="content">Purchase History</a>
+  </nav>
+
+  <iframe class="iframe-container" name="content" width="100%" height="800" frameborder="0"></iframe>
+
+  <script>
+    (function() {
+      const link = document.getElementById("dashboard");
+      link.click();
+    })()
+  </script>
+</body>
+
+</html>

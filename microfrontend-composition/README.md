@@ -5,12 +5,7 @@ This repository explores **architectural recipes for micro‑frontend compositio
 The goal is to solve the problem of building a modular application where independent MFEs (Micro‑Frontends) can be composed together into a unified user experience.
 
 We demonstrate multiple composition techniques:
-- **Links and Client‑Side Integration**
-- **Module Federation**
-- **Server‑Side Integration**
-- **Run time Integration via custom components**
-- **Edge‑Side Includes (ESI) / CDN Composition**
-
+- **Client‑Side Integration Classic**
 ---
 
 ## 🛍️ Application Context
@@ -31,8 +26,4 @@ The case study models a simplified **e‑commerce application** composed of mult
 ## 📚 Recipes
 We demonstrate multiple composition techniques, each documented in its own folder:
 
-- [`microfrontends/links-and-client-side-integration`](./links-and-client-side-integration) → Links and Client‑Side Integration
-- [`microfrontends/module-federation`](./module-federation) → Module Federation
-- [`microfrontends/serverside-integration`](./serverside-integration) → Server‑Side Integration
-- [`microfrontends/web-components`](./web-components) → Run‑time Integration via Custom Components
-- [`microfrontends/edge-side-includes`](./edge-side-includes) → Edge‑Side Includes (ESI) / CDN Composition
+- [`microfrontends/client-side-integration-classic`](./links-and-client-side-integration) → Links and Client‑Side Integration
