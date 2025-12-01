@@ -33,7 +33,7 @@ We apply this recipe to our e‑commerce case study:
 
 ## 🛠️ Technologies Used
 This recipe is implemented using:
-- **Angular** → framework for building MFEs and handling routing/navigation  
+- **HTML** →   for structural markup for each microfrontend (pages, containers, component placeholders).
 - **JavaScript** → for dynamic transclusion and component mounting  
 - **CSS** → for styling and consistent UI across MFEs  
 
