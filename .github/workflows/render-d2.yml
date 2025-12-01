@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "**/*.d2"   # trigger when any .d2 file changes anywhere
+  workflow_dispatch:   # <-- enables manual trigger from Actions tab
 
 jobs:
   render:
