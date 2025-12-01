@@ -22,21 +22,39 @@ We apply this recipe to our e‑commerce case study:
 
 ## ⚙️ Functionalities
 - **Navigation (Links)** → AppShell routes to Dashboard, Product Catalog and Purchase History pages  
-- **iFrames** → In AppShell we use iFrames to load the Dashboard, Product Catalog and Purchase History
+- **iFrames** → In AppShell we use iFrames to load the Dashboard, Product Catalog and Purchase History  
 - **JavaScript Transclusion** → Dashboard mounts exposed components directly into its page  
 
 ---
 
-## 📊 Diagram
+## 📊Application Diagram
 ![Links and Client‑Side Integration Diagram](../diagrams/application.svg)
 
 ---
 
-## ✅ Summary
-This recipe demonstrates how to combine **links, iFrames, and JavaScript transclusion** to build a modular e‑commerce application.  
+## 🛠️ Technologies Used
+This recipe is implemented using:
+- **Angular** → framework for building MFEs and handling routing/navigation  
+- **JavaScript** → for dynamic transclusion and component mounting  
+- **CSS** → for styling and consistent UI across MFEs  
+- **Docker & Docker Compose** → for containerized deployment and orchestration of MFEs  
 
-- **Links** → whole‑page navigation  
-- **iFrames** → embed isolated MFEs  
-- **Transclusion** → reuse components across MFEs  
+---
 
-Together, these techniques enable a flexible, scalable, and maintainable client‑side micro‑frontend architecture.
+## ▶️ How to Use
+To run the example locally you will have to have docker installed on your machine:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/aleczandru1989/architectural-recipes.git.git
+   cd architectural-recipes/microfrontends/links-and-client-side-integration
+
+2. **Start all MFEs with Docker Compose**
+   ```bash
+   docker compose -f docker-compose.yml up -d
+
+3. **Access the application**
+   - AppShell - http://localhost:5000
+   - Dashboard - http://localhost:5001
+   - Product Catalog - http://localhost:5002
+   - Purchase History - http://localhost:5003

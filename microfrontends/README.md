@@ -29,14 +29,6 @@ The case study models a simplified **e‑commerce application** composed of mult
 ---
 
 ## 📚 Recipes
-Each folder under `microfrontends/` contains a **specific recipe** with its own README and diagrams:
-
-- `links-and-client-side-integration/` → Links, iFrames, and JavaScript transclusion  
-- `module-federation/` → Component sharing via Webpack Module Federation  
-- `serverside-integration/` → Server‑side HTML composition  
-- `web-components/` → Composition using native Web Components
-
-## 📚 Recipes
 We demonstrate multiple composition techniques, each documented in its own folder:
 
 - [`microfrontends/links-and-client-side-integration`](./links-and-client-side-integration) → Links and Client‑Side Integration
