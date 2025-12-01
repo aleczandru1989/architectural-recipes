@@ -1,5 +1,4 @@
-# 🔗 Recipe: Links and Client‑Side Integration
-
+# 🔗 Recipe: Classic Client Side Integration
 ## 📖 Problem
 How can we compose micro‑frontends at the **client side** using:
 - **Links** for navigation between full MFEs  

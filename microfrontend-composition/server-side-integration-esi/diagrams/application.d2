@@ -1,0 +1,41 @@
+direction: down
+
+browser: {
+  label: "Browser"
+  icon: "https://api.iconify.design/material-symbols/language.svg"
+}
+
+server: {
+  label: "Server"
+  group: {
+    label: ""
+    varnish: {
+      label: "Varnish Server\nlocalhost:8080"
+      shape: cloud
+    }
+
+    decision: {
+      shape: diamond
+      label: "Is Resource \n Cached?"
+    }
+
+    varnish -> decision: "Is Resource Cached?"
+
+    decision -> varnish: "Return cached Heading" {
+      style: dashed
+      label: "True"
+    }
+  }
+
+  nodejs: {
+    label: "Node.js Server\nlocalhost:8081"
+    shape: cloud
+  }
+
+  group.decision -> nodejs: "Forward request" {
+    label: "False"
+  }
+}
+
+browser -> server.group.varnish: "Get Heading"
+server.group.varnish -> browser: "Response Heading"
