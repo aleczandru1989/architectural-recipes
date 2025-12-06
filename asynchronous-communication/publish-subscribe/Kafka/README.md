@@ -98,4 +98,4 @@ Follow these steps to run the recipe locally:
 
 6. **Consumers**
     ```bash
-    Monitor the logs on per consummer group and see that only 3 messages are consummer in the 6 containers
+    Monitor the logs per consummer group and see that only 3 messages are consummed in the 6 defined replicas

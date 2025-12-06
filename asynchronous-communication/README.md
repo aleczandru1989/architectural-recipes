@@ -13,6 +13,23 @@ By studying and applying these recipes, architects and developers can better und
 
 ---
 
+| Pattern Name            | Apache Kafka                                                                 | RabbitMQ                                                                 |
+|-------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| Publish/Subscribe       | ✅ Native via topics and consumer groups                                      | ✅ Native via exchanges and queues                                        |
+| Point-to-Point          | ✅ Achieved with one consumer group (only one consumer processes each message)| ✅ Native via queues (work queues)                                        |
+| Request/Reply           | ❌ Not native; emulated with request/response topics + correlation IDs        | ✅ Native via direct reply queues (AMQP RPC)                              |
+| Routing (Content-based) | ❌ Not broker-level; must be done in consumers or Kafka Streams               | ✅ Supported via header/topic exchanges                                   |
+| Filtering               | ✅ Consumers filter messages; Kafka Streams supports advanced filtering       | ✅ Supported via bindings, selectors, and consumer-side filtering         |
+| Aggregation             | ✅ Supported via Kafka Streams / ksqlDB                                       | ✅ Supported via plugins or consumer logic                                |
+| Transformation          | ✅ Supported via Kafka Streams / Connect transforms                           | ✅ Supported via message converters, plugins, or consumer logic           |
+| Dead Letter Queue       | ✅ Supported via DLQ topics (commonly used in Kafka Connect)                  | ✅ Native DLX (Dead Letter Exchange) support                              |
+| Competing Consumers     | ✅ Multiple consumers in a group share partitions                             | ✅ Multiple consumers share a queue, broker load-balances                 |
+| Priority Queues         | ❌ Not native; emulate via separate topics                                    | ✅ Native support for priority queues                                     |
+| Delayed / Scheduled Delivery | ❌ No native delay; emulate with timestamps or external schedulers       | ✅ Supported via delayed message exchange plugin                          |
+| Transactional Messaging | ✅ Exactly-once semantics, transactional producers/consumers                  | ✅ Transactions and publisher confirms                                    |
+| Replay / Event Sourcing | ✅ Consumers can rewind offsets, reprocess history                            | ❌ Not native; messages consumed are gone unless re-queued                |
+| Batch Processing        | ✅ Native batch polling, windowed aggregation via Streams                     | ✅ Possible via consumer prefetch, but less central                       |
+
 ## ⏩ Point to Point
 Point‑to‑point communication is a messaging pattern where a message is sent to a specific queue, and only one consumer receives and processes it. Unlike publish/subscribe models where multiple subscribers may consume the same message, point‑to‑point ensures exclusive delivery — once a consumer reads the message, it is removed from the queue and cannot be consumed again.
 - Producer → Queue → Consumer
