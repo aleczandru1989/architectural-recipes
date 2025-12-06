@@ -35,7 +35,7 @@ The case study models a simplified **e‑commerce application** composed of mult
 
 ---
 
-## 🔗 Diagram
+## 📊 Diagram
 ```mermaid
 flowchart LR
     %% Define reusable styles

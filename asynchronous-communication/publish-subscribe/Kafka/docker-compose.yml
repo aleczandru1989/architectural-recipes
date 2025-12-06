@@ -1,0 +1,177 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:29092"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  akhq:
+    image: tchiotludo/akhq:latest
+    container_name: akhq
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            local-kafka:
+              properties:
+                bootstrap.servers: "kafka:29092"
+
+  producer:
+    build:
+      context: ./app/Producer
+      dockerfile: Dockerfile
+    container_name: kafka-producer
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+
+  consumer-1:
+    build:
+      context: ./app/Consumer
+      dockerfile: Dockerfile
+    container_name: kafka-consumer-1
+    depends_on:
+      kafka:
+        condition: service_healthy
+      producer:
+        condition: service_started
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - CONSUMER_GROUP_ID=app-consumer-1
+      - CONSUMER_INSTANCE_NAME=consumer-1
+    restart: unless-stopped
+
+  consumer-2:
+    build:
+      context: ./app/Consumer
+      dockerfile: Dockerfile
+    container_name: kafka-consumer-2
+    depends_on:
+      kafka:
+        condition: service_healthy
+      producer:
+        condition: service_started
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - CONSUMER_GROUP_ID=app-consumer-1
+      - CONSUMER_INSTANCE_NAME=consumer-2
+    restart: unless-stopped
+
+  consumer-3:
+    build:
+      context: ./app/Consumer
+      dockerfile: Dockerfile
+    container_name: kafka-consumer-3
+    depends_on:
+      kafka:
+        condition: service_healthy
+      producer:
+        condition: service_started
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - CONSUMER_GROUP_ID=app-consumer-2
+      - CONSUMER_INSTANCE_NAME=consumer-3
+    restart: unless-stopped
+
+  consumer-4:
+    build:
+      context: ./app/Consumer
+      dockerfile: Dockerfile
+    container_name: kafka-consumer-4
+    depends_on:
+      kafka:
+        condition: service_healthy
+      producer:
+        condition: service_started
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - CONSUMER_GROUP_ID=app-consumer-2
+      - CONSUMER_INSTANCE_NAME=consumer-4
+    restart: unless-stopped
+
+  consumer-5:
+    build:
+      context: ./app/Consumer
+      dockerfile: Dockerfile
+    container_name: kafka-consumer-5
+    depends_on:
+      kafka:
+        condition: service_healthy
+      producer:
+        condition: service_started
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - CONSUMER_GROUP_ID=app-consumer-3
+      - CONSUMER_INSTANCE_NAME=consumer-5
+    restart: unless-stopped
+
+  consumer-6:
+    build:
+      context: ./app/Consumer
+      dockerfile: Dockerfile
+    container_name: kafka-consumer-6
+    depends_on:
+      kafka:
+        condition: service_healthy
+      producer:
+        condition: service_started
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - CONSUMER_GROUP_ID=app-consumer-3
+      - CONSUMER_INSTANCE_NAME=consumer-6
+    restart: unless-stopped
+
+networks:
+  default:
+    name: kafka-network

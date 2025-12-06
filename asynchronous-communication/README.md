@@ -12,3 +12,18 @@ These recipes provide practical examples of how asynchronous communication can b
 By studying and applying these recipes, architects and developers can better understand the trade-offs of each communication style. Whether the need is simple point-to-point messaging or complex aggregation pipelines, these examples serve as reproducible building blocks for real-world systems.
 
 ---
+
+## ⏩ Point to Point
+Point‑to‑point communication is a messaging pattern where a message is sent to a specific queue, and only one consumer receives and processes it. Unlike publish/subscribe models where multiple subscribers may consume the same message, point‑to‑point ensures exclusive delivery — once a consumer reads the message, it is removed from the queue and cannot be consumed again.
+- Producer → Queue → Consumer
+- Guarantees one‑to‑one delivery.
+- Useful for task distribution (e.g., job processing, work queues).
+- Ensures load balancing when multiple consumers listen to the same queue, since each message is delivered to only one of them.
+
+## ⏩ Publish/Subscribe (Pub/Sub)
+Publish/Subscribe (pub/sub) communication is a messaging pattern where producers (publishers) send messages to a topic, and multiple consumers (subscribers) can receive those messages. Unlike point‑to‑point, where only one consumer processes a message, pub/sub enables one‑to‑many delivery — every subscriber to a topic gets a copy of the message.
+- Producer → Topic → Multiple Subscribers
+- Guarantees broadcast delivery to all active subscribers.
+- Useful for event distribution (e.g., notifications, real‑time updates).
+- Promotes loose coupling, since publishers don’t need to know who the subscribers are.
+
