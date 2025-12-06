@@ -11,8 +11,8 @@ public class OrderConsumerService : BackgroundService
     private readonly ILogger<OrderConsumerService> _logger;
     private readonly IConsumer<string, string> _consumer;
     private readonly string _consumerInstanceId;
-    
-    private string TOPIC_NAME = "app.order.publish"
+
+    private string TOPIC_NAME = "app.order.publish";
 
     public OrderConsumerService(ILogger<OrderConsumerService> logger)
     {
