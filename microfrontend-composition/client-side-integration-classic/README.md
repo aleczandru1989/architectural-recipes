@@ -25,9 +25,65 @@ We apply this recipe to our e‑commerce case study:
 - **JavaScript  via Web Compoennts** → Dashboard mounts exposed components directly into its page from Product Catalog and Purchase History
 ---
 
-## 📊Diagram
-![Links and Client‑Side Integration Diagram](../diagrams/application.svg)
+## 🛍️ Application Context
+The case study models a simplified **e‑commerce application** composed of multiple MFEs:
 
+- **AppShell MFE** → provides navigation and global layout  
+- **Dashboard MFE** → aggregates components from other MFEs into a single page view  
+- **Product Catalog MFE** → manages product listings and exposes a “Top 5 Products” component  
+- **Purchase History MFE** → manages user purchase history and exposes a “Top 5 Purchases” component  
+
+---
+
+## 🔗 Diagram
+```mermaid
+flowchart LR
+    %% AppShell
+    subgraph AppShell ["**Shell MFE**"]
+        style AppShell fill:#d9f2d9,stroke:#333,stroke-width:1px
+        NavBar["Navigation"]
+        style NavBar fill:#cce5ff,stroke:#333,stroke-width:1px
+    end
+
+    %% DashboardMFE
+    subgraph DashboardMFE ["**Dashboard MFE**"]
+        style DashboardMFE fill:#d9f2d9,stroke:#333,stroke-width:1px
+        PageDashboard["Dashboard Page"]
+        style PageDashboard fill:#ffe5cc,stroke:#333,stroke-width:1px
+
+        RecommendationComponent["Top 5 Products Component Placeholder"]
+        PurchaseHistoryComponent["Top 5 Purchase History Component Placeholder"]
+    end
+
+    %% ProductCatalogMFE
+    subgraph ProductCatalogMFE ["**Product Catalog MFE**"]
+        style ProductCatalogMFE fill:#d9f2d9,stroke:#333,stroke-width:1px
+
+        Top5Products["Top 5 Products Component"]
+        style Top5Products fill:#cce5ff,stroke:#333,stroke-width:1px
+
+        PageCatalog["Product Catalog Page"]
+        style PageCatalog fill:#ffe5cc,stroke:#333,stroke-width:1px
+    end
+
+    %% PurchaseHistoryMFE
+    subgraph PurchaseHistoryMFE ["**Product History MFE**"]
+        style PurchaseHistoryMFE fill:#d9f2d9,stroke:#333,stroke-width:1px
+        PageHistory["Purchase History Page"]
+        style PageHistory fill:#ffe5cc,stroke:#333,stroke-width:1px
+
+        Top5History["Top 5 Purchase History Component"]
+        style Top5History fill:#cce5ff,stroke:#333,stroke-width:1px
+    end
+
+    %% Edges
+    NavBar -->|localhost:5001| PageDashboard
+    NavBar -->|localhost:5002/product-catalogs| PageCatalog
+    NavBar -->|localhost:5003/purchase-histories| PageHistory
+
+    RecommendationComponent -->|localhost:5002/components/top-5| Top5Products
+    PurchaseHistoryComponent -->|localhost:5003/components/top-5| Top5History
+```
 ---
 
 ## 🛠️ Technologies Used

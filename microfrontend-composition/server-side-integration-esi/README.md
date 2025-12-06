@@ -22,9 +22,9 @@ flowchart TD
   
   subgraph **Server**
     varnish[**Varnish** <br/> localhost:8080] --> condition{Is content cached?}
-    condition -- Yes --> varnish
-    condition -- No --> node[**Node.js Server** <br/> localhost:8081]
-    node --> varnish
+    condition -- Content Response From Cache --> varnish
+    condition -- Get Content From Server --> node[**Node.js Server** <br/> localhost:8081]
+    node -- Content Response from Server--> varnish
   end
 
   browser -- Get Content --> varnish

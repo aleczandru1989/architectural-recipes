@@ -1,8 +1,8 @@
-# Asynchronous Communication Recipes
+# 📡 Asynchronous Communication Recipes
 
-## Overview
+## 📖 Overview
+This repository explores **architectural recipes for asynchronous communication patterns**.  
 
-This repository explores architectural recipes for asynchronous communication patterns.  
 The goal is to solve the problem of coordinating distributed systems where components interact without requiring immediate responses or tight coupling.
 
 Asynchronous communication enables systems to remain responsive, scalable, and resilient even under heavy load or network variability. By decoupling senders and receivers, it allows messages to be exchanged reliably while each participant continues its work independently. This approach is foundational in modern architectures such as event-driven systems, message queues, and streaming platforms.
@@ -13,13 +13,14 @@ By studying and applying these recipes, architects and developers can better und
 
 ---
 
-## Recipes
+## 📚 Recipes
+We demonstrate multiple asynchronous communication techniques, each documented in its own folder:
 
-- [Point-to-Point](./point-to-point)  
-- [Publish-Subscribe](./publish-subscribe)  
-- [Request-Reply](./request-reply)  
-- [Fan-Out](./fan-out)  
-- [Routing](./routing)  
-- [Filtering](./filtering)  
-- [Aggregation](./aggregation)  
-- [Replication](./replication)  
+- 🔗 [Point-to-Point](./point-to-point)  
+- 📢 [Publish-Subscribe](./publish-subscribe)  
+- 📬 [Request-Reply](./request-reply)  
+- 🌐 [Fan-Out](./fan-out)  
+- 🛣️ [Routing](./routing)  
+- 🧹 [Filtering](./filtering)  
+- 🧩 [Aggregation](./aggregation)  
+- 📀 [Replication](./replication)

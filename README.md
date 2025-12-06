@@ -20,6 +20,7 @@ Each recipe includes:
 
 ## 📚 Contents  
 - [Microfrontend Composition](./microfrontend-composition)  
+- [Asynchronous Communication](./asynchronous-communication)  
 
 ---
 
