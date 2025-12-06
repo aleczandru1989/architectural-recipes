@@ -2,7 +2,8 @@
 
 ## 📖 Overview
 This recipe demonstrates **point-to-point asynchronous communication using Apache Kafka**.  
-The goal is to show how a producer can send messages to a Kafka topic, and how consumers can reliably process those messages in a one-to-one delivery model.
+
+The goal is to show how a producer can send messages to a Kafka topic, and how consumers can reliably process those messages in a one-to-one delivery model, even when there are multiple replicas of the same services listening.
 
 Point-to-point via Kafka ensures that each message is consumed by exactly one member of a consumer group. This pattern is useful for distributing tasks evenly across multiple replicas while maintaining strict delivery guarantees.
 
@@ -51,5 +52,36 @@ flowchart TD
 This recipe leverages the following technologies:
 
 - **Kafka** → Enables reliable message streaming and communication between producers and consumers.  
-- **ASP.NET/.NET** → Provides the framework for building and running both producer and consumer applications.  
-- **Docker** → Creates a containerized environment to simplify setup, testing, and deployment of the recipe.  
+- **ASP\.NET and .NET** → Provides the framework for building and running both producer and consumer applications.  
+- **Docker** → Creates a containerized environment to simplify setup, testing, and deployment of the recipe. 
+- **AKHQ** → Provides an interface for visualizing messages send via topics in Kafka  
+
+## ▶️ How to Use
+
+Follow these steps to run the recipe locally:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/aleczandru1989/architectural-recipes.git.git
+
+
+2. **Navigate to recipe**
+   ```bash
+   cd architectural-recipes/asynchronous-communication/point-to-point/Kafka
+
+
+3. **Run Docker Compose** 
+   ```bash
+   docker compose up -d
+
+4. **Open Producer in Browser**
+   ```bash
+   Open in browser http://localhost:5000/swagger/index.html and post a message via /api/Order/Send
+
+5. **Open AKHQ**
+   ```bash
+   Open in browser http://localhost:8080/ui/local-kafka/topic and click on app.order.publish topic
+
+6. **Consumers**
+    ```bash
+    Monitor the logs on one of the 5 consumer replicas to see in witch one the message arrived
