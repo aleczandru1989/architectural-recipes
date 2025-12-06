@@ -16,9 +16,24 @@ This recipe demonstrates how to use **Edge Side Includes (ESI)** with **Varnish*
 ---
 
 ## 📊Diagram
-![Server Side Integration via Varnish and ESI](diagrams/application.svg)
+```mermaid
+flowchart TD
+  browser[Browser]
+  
+  subgraph **Server**
+    varnish[**Varnish** <br/> localhost:8080] --> condition{Is content cached?}
+    condition -- Yes --> varnish
+    condition -- No --> node[**Node.js Server** <br/> localhost:8081]
+    node --> varnish
+  end
 
+  browser -- Get Content --> varnish
+  varnish -- Content Response --> browser
 
+  %% Define a default class for all nodes
+  classDef default stroke:#333,stroke-width:2px;
+
+```
 ---
 
 ## 🛠️ Technologies Used
