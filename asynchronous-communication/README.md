@@ -15,11 +15,11 @@ By studying and applying these recipes, architects and developers can better und
 
 ## Recipes
 
-- [Point-to-Point](./point-to-point/README.md)  
-- [Publish-Subscribe](./publish-subscribe/README.md)  
-- [Request-Reply](./request-reply/README.md)  
-- [Fan-Out](./fan-out/README.md)  
-- [Routing](./routing/README.md)  
-- [Filtering](./filtering/README.md)  
-- [Aggregation](./aggregation/README.md)  
-- [Replication](./replication/README.md)  
+- [Point-to-Point](./point-to-point)  
+- [Publish-Subscribe](./publish-subscribe)  
+- [Request-Reply](./request-reply)  
+- [Fan-Out](./fan-out)  
+- [Routing](./routing)  
+- [Filtering](./filtering)  
+- [Aggregation](./aggregation)  
+- [Replication](./replication)  
