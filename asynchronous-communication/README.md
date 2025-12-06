@@ -45,3 +45,24 @@ Publish/Subscribe (pub/sub) communication is a messaging pattern where producers
 - Useful for event distribution (e.g., notifications, real‑time updates).
 - Promotes loose coupling, since publishers don’t need to know who the subscribers are.
 
+## ⏩ Request/Reply
+Request/Reply is a messaging pattern where a producer sends a request and expects a reply. The broker delivers the request to a consumer, which processes it and returns a response, often using correlation IDs or a reply queue.
+- Producer → Request Queue → Consumer → Reply Queue → Producer
+- Ensures one‑to‑one request/response matching.
+- Useful for RPC‑style communication (e.g., queries, synchronous workflows)
+
+## ⏩ Routing (Content‑based)
+Routing (Content‑based) is a messaging pattern where the broker inspects message headers or payload and directs each message to the appropriate destination. Unlike simple broadcast models, routing ensures that only the relevant consumers receive the message based on defined rules.
+- Producer → Broker → Destination Queue(s)
+- Routes messages by content (e.g., region=EU → EU service).
+- Useful for selective delivery, reducing unnecessary traffic
+
+## ⏩ Filtering
+Filtering is a messaging pattern where consumers receive only the messages that match specific criteria. Instead of processing every message, subscribers define rules (such as headers or properties) to limit delivery to relevant events.
+- Producer → Broker → Consumer (with filter)
+- Ensures selective delivery based on conditions.
+- Useful for reducing traffic and focusing on relevant data
+
+
+
+
