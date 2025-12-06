@@ -13,6 +13,6 @@ By decoupling sender and receiver, point-to-point messaging provides resilience 
 ## 📚 Recipes
 We demonstrate point-to-point communication using the following messaging technologies:
 
-- 📨 [Kafka](./kafka/README.md) → Point-to-point messaging with Apache Kafka  
+- 📨 [Kafka](./Kafka/README.md) → Point-to-point messaging with Apache Kafka  
 - 🐇 [RabbitMQ](./rabbitmq/README.md) → Point-to-point messaging with RabbitMQ  
 

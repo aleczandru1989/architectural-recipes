@@ -80,7 +80,7 @@ Follow these steps to run the recipe locally:
 
 5. **Open AKHQ**
    ```bash
-   Open in browser http://localhost:8080/ui/local-kafka/topic and click on app.order.publish topic
+   Open in browser http://localhost:8080/ui/local-kafka/topic and click on app.order.publish topic on data section to see the data.
 
 6. **Consumers**
     ```bash
