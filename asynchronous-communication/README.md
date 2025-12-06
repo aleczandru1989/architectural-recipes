@@ -12,6 +12,7 @@ These recipes provide practical examples of how asynchronous communication can b
 By studying and applying these recipes, architects and developers can better understand the trade-offs of each communication style. Whether the need is simple point-to-point messaging or complex aggregation pipelines, these examples serve as reproducible building blocks for real-world systems.
 
 ---
+## ⏩ Communication Patterns
 
 | Pattern Name            | Apache Kafka                                                                 | RabbitMQ                                                                 |
 |-------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------|
