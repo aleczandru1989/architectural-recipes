@@ -38,42 +38,33 @@ The case study models a simplified **e‑commerce application** composed of mult
 ## 🔗 Diagram
 ```mermaid
 flowchart LR
+    %% Define reusable styles
+    classDef mfe fill:#d9f2d9,stroke:#333,stroke-width:1px;
+    classDef page fill:#ffe5cc,stroke:#333,stroke-width:1px;
+    classDef component fill:#cce5ff,stroke:#333,stroke-width:1px;
+
     %% AppShell
     subgraph AppShell ["**Shell MFE**"]
-        style AppShell fill:#d9f2d9,stroke:#333,stroke-width:1px
         NavBar["Navigation"]
-        style NavBar fill:#cce5ff,stroke:#333,stroke-width:1px
     end
 
     %% DashboardMFE
     subgraph DashboardMFE ["**Dashboard MFE**"]
-        style DashboardMFE fill:#d9f2d9,stroke:#333,stroke-width:1px
         PageDashboard["Dashboard Page"]
-        style PageDashboard fill:#ffe5cc,stroke:#333,stroke-width:1px
-
         RecommendationComponent["Top 5 Products Component Placeholder"]
         PurchaseHistoryComponent["Top 5 Purchase History Component Placeholder"]
     end
 
     %% ProductCatalogMFE
     subgraph ProductCatalogMFE ["**Product Catalog MFE**"]
-        style ProductCatalogMFE fill:#d9f2d9,stroke:#333,stroke-width:1px
-
         Top5Products["Top 5 Products Component"]
-        style Top5Products fill:#cce5ff,stroke:#333,stroke-width:1px
-
         PageCatalog["Product Catalog Page"]
-        style PageCatalog fill:#ffe5cc,stroke:#333,stroke-width:1px
     end
 
     %% PurchaseHistoryMFE
     subgraph PurchaseHistoryMFE ["**Product History MFE**"]
-        style PurchaseHistoryMFE fill:#d9f2d9,stroke:#333,stroke-width:1px
         PageHistory["Purchase History Page"]
-        style PageHistory fill:#ffe5cc,stroke:#333,stroke-width:1px
-
         Top5History["Top 5 Purchase History Component"]
-        style Top5History fill:#cce5ff,stroke:#333,stroke-width:1px
     end
 
     %% Edges
@@ -83,6 +74,11 @@ flowchart LR
 
     RecommendationComponent -->|localhost:5002/components/top-5| Top5Products
     PurchaseHistoryComponent -->|localhost:5003/components/top-5| Top5History
+
+    %% Apply classes
+    class AppShell,DashboardMFE,ProductCatalogMFE,PurchaseHistoryMFE mfe;
+    class PageDashboard,PageCatalog,PageHistory page;
+    class NavBar,Top5Products,Top5History,RecommendationComponent,PurchaseHistoryComponent component;
 ```
 ---
 

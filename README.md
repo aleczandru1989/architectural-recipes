@@ -19,9 +19,17 @@ Each recipe includes:
 ---
 
 ## 📚 Contents  
-- [Microfrontend Composition](./microfrontend-composition)  
-- [Asynchronous Communication](./asynchronous-communication)  
 
+We demonstrate multiple recipes, each documented in its own folder:
+
+- [Microfrontend Composition](./microfrontend-composition)  
+  - [Client Side Integration Classic](./microfrontend-composition/client-side-integration-classic) 
+  - [Server Side Integration via ESI](./microfrontend-composition/server-side-integration-esi) 
+  
+- [Asynchronous Communication](./asynchronous-communication)  
+  - [Point-to-Point](./asynchronous-communication/point-to-point)
+    - [Apache Kafka](./asynchronous-communication/point-to-point/Kafka)    
+  - [Publish-Subscribe](./asynchronous-communication/publish-subscribe)  
 ---
 
 ## 🎯 Goals
