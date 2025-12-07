@@ -77,6 +77,11 @@ Aggregation is a messaging pattern where multiple related messages are combined 
 - Ensures consolidated delivery by merging multiple messages into one output.  
 - Useful for reducing message volume and providing higher-level insights (totals, averages, summaries).
 
+## ⏩ Transformation
+Transformation is a messaging pattern where the content or structure of a message is modified before delivery. Instead of consuming raw events, subscribers receive adapted messages that are enriched, reformatted, or sanitized.  
+- Producer → Broker → Consumer (with transformer)  
+- Ensures messages are usable and consistent across systems.  
+- Useful for interoperability, enrichment, and data quality improvements.
 
 
 

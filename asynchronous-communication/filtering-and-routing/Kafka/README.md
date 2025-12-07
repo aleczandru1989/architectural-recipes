@@ -1,4 +1,4 @@
-# 📬 Content Based Filtering
+# 📬Filtering and Routing
 
 ## 📖 Overview
 This recipe demonstrates **content‑based filtering** using Apache Kafka with Streamiz\.Kafka\.Net.

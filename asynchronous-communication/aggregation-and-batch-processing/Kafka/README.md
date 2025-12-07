@@ -1,4 +1,4 @@
-# 📬 Aggregation
+# 📬 Aggregation and Batch Processing
 
 ## 📖 Overview
 This recipe demonstrates **message aggregation** using Apache Kafka with Streamiz\.Kafka.Net.
