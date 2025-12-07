@@ -102,7 +102,7 @@ This recipe leverages the following technologies:
 - **Kafka** → Enables reliable message streaming and communication between producers and consumers.  
 - **ASP\.NET and .NET** → Provides the framework for building and running both producer and consumer applications.  
 - **Docker** → Creates a containerized environment to simplify setup, testing, and deployment of the recipe. 
-- **AKHQ** → Provides an interface for visualizing messages send via topics in Kafka  
+- **AKHQ** → Provides an interface for visualizing messages sent via topics in Kafka  
 
 ## ▶️ How to Use
 
