@@ -42,7 +42,7 @@ flowchart LR
     %% Message Aggregator as subgraph
     subgraph aggregator["**Message Aggregator**"]
         Buffer@{ shape: cyl, label: "Buffer messages" }
-        Decision@{shape: diam, label: "Has Buffering Reached 10?"} 
+        Decision@{shape: diam, label: "Has Kafka window limit been reached?"} 
     end
 
     KafkaRouteROTopic@{ shape: curv-trap, label: "Kafka <br/> app.order.publish.ro"}
@@ -65,7 +65,7 @@ flowchart LR
     Decision -- Yes --> KafkaRouteROTopic 
     Decision -- No --> Buffer
 
-    KafkaRouteROTopic -- Consume batches of 10 messages--> cg-1
+    KafkaRouteROTopic -- Consume batches of N messages--> cg-1
     
     %% Styling
     style replicas fill:#d9f2d9,stroke:#333,stroke-width:2px;
