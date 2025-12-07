@@ -14,22 +14,30 @@ By studying and applying these recipes, architects and developers can better und
 ---
 ## ⏩ Communication Patterns
 
+### Legend
+- ✅ Native broker support
+- ❌ Not supported at all
+- ⚠️ Warning: Not broker-native, requires extension (Kafka Streams / ksqlDB, plugins, or consumer-side logic)
+
+---
+
 | Pattern Name            | Apache Kafka                                                                 | RabbitMQ                                                                 |
 |-------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | Publish/Subscribe       | ✅ Native via topics and consumer groups                                      | ✅ Native via exchanges and queues                                        |
-| Point-to-Point          | ✅ Achieved with one consumer group (only one consumer processes each message)| ✅ Native via queues (work queues)                                        |
+| Point-to-Point          | ✅ Native (one consumer group → one consumer processes each message)          | ✅ Native via queues (work queues)                                        |
 | Request/Reply           | ❌ Not native; emulated with request/response topics + correlation IDs        | ✅ Native via direct reply queues (AMQP RPC)                              |
-| Routing (Content-based) | ❌ Not broker-level; must be done in consumers or Kafka Streams               | ✅ Supported via header/topic exchanges                                   |
-| Filtering               | ✅ Consumers filter messages; Kafka Streams supports advanced filtering       | ✅ Supported via bindings, selectors, and consumer-side filtering         |
-| Aggregation             | ✅ Supported via Kafka Streams / ksqlDB                                       | ✅ Supported via plugins or consumer logic                                |
-| Transformation          | ✅ Supported via Kafka Streams / Connect transforms                           | ✅ Supported via message converters, plugins, or consumer logic           |
-| Dead Letter Queue       | ❌ No native delay; Implemented via DLQ topics                                | ✅ Native DLX (Dead Letter Exchange) support                              |
-| Competing Consumers     | ✅ Multiple consumers in a group share partitions                             | ✅ Multiple consumers share a queue, broker load-balances                 |
+| Routing (Content-based) | ⚠️ Requires Kafka Streams / consumer logic                                   | ✅ Native via header/topic exchanges                                      |
+| Filtering               | ⚠️ Requires Kafka Streams / consumer-side filtering                          | ⚠️ Requires selectors or consumer-side filtering                          |
+| Aggregation             | ⚠️ Requires Kafka Streams / ksqlDB                                           | ⚠️ Requires consumer logic or plugins                                     |
+| Transformation          | ⚠️ Requires Kafka Streams / Connect transforms                               | ⚠️ Requires consumer logic or plugins                                     |
+| Dead Letter Queue       | ❌ No native DLQ; emulate via DLQ topics                                      | ✅ Native via DLX (Dead Letter Exchange)                                  |
+| Competing Consumers     | ✅ Native (multiple consumers in a group share partitions)                    | ✅ Native (multiple consumers share a queue, broker load-balances)        |
 | Priority Queues         | ❌ Not native; emulate via separate topics                                    | ✅ Native support for priority queues                                     |
-| Delayed / Scheduled Delivery | ❌ No native delay; emulate with timestamps or external schedulers       | ✅ Supported via delayed message exchange plugin                          |
-| Transactional Messaging | ✅ Exactly-once semantics, transactional producers/consumers                  | ✅ Transactions and publisher confirms                                    |
-| Replay / Event Sourcing | ✅ Consumers can rewind offsets, reprocess history                            | ❌ Not native; messages consumed are gone unless re-queued                |
-| Batch Processing        | ✅ Native batch polling, windowed aggregation via Streams                     | ✅ Possible via consumer prefetch, but less central                       |
+| Delayed / Scheduled Delivery | ❌ Not native; emulate with timestamps or external schedulers            | ⚠️ Requires delayed message exchange plugin                               |
+| Transactional Messaging | ✅ Native (exactly-once semantics, transactional producers/consumers)         | ✅ Native (transactions and publisher confirms)                           |
+| Replay / Event Sourcing | ✅ Native (consumers can rewind offsets, reprocess history)                   | ❌ Not native; consumed messages are gone unless re-queued                |
+| Batch Processing        | ⚠️ Requires Kafka Streams (windowed aggregation)                             | ⚠️ Possible via consumer prefetch or plugins, but not broker-native       |
+
 
 ## ⏩ Point to Point
 Point‑to‑point communication is a messaging pattern where a message is sent to a specific queue, and only one consumer receives and processes it. Unlike publish/subscribe models where multiple subscribers may consume the same message, point‑to‑point ensures exclusive delivery — once a consumer reads the message, it is removed from the queue and cannot be consumed again.
@@ -62,6 +70,12 @@ Filtering is a messaging pattern where consumers receive only the messages that 
 - Producer → Broker → Consumer (with filter)
 - Ensures selective delivery based on conditions.
 - Useful for reducing traffic and focusing on relevant data
+
+## ⏩ Aggregation
+Aggregation is a messaging pattern where multiple related messages are combined into a single, consolidated event. Instead of delivering each message individually, the broker or consumer groups them based on defined criteria (such as keys, counts, or time windows) and produces a summarized result.  
+- Producer → Broker → Consumer (with aggregator)  
+- Ensures consolidated delivery by merging multiple messages into one output.  
+- Useful for reducing message volume and providing higher-level insights (totals, averages, summaries).
 
 
 

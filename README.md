@@ -27,9 +27,12 @@ We demonstrate multiple recipes, each documented in its own folder:
   - [Server Side Integration via ESI](./microfrontend-composition/server-side-integration-esi) 
   
 - [Asynchronous Communication](./asynchronous-communication)  
-  - [Point-to-Point](./asynchronous-communication/point-to-point)
-    - [Apache Kafka](./asynchronous-communication/point-to-point/Kafka)    
-  - [Publish-Subscribe](./asynchronous-communication/publish-subscribe)  
+  - [Point to Point](./asynchronous-communication/point-to-point)
+    - [Apache Kafka](./asynchronous-communication/point-to-point/Kafka)   
+  - [Publish/Subscribe](./asynchronous-communication/publish-subscribe)
+    - [Apache Kafka](./asynchronous-communication/publish-subscribe/Kafka)    
+  - [Filtering and Routing](./asynchronous-communication/filtering-and-routing)
+    - [Apache Kafka](./asynchronous-communication/filtering-and-routing/Kafka)  
 ---
 
 ## 🎯 Goals
