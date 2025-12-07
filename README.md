@@ -33,6 +33,8 @@ We demonstrate multiple recipes, each documented in its own folder:
     - [Apache Kafka](./asynchronous-communication/publish-subscribe/Kafka)    
   - [Filtering and Routing](./asynchronous-communication/filtering-and-routing)
     - [Apache Kafka](./asynchronous-communication/filtering-and-routing/Kafka)  
+  - [Aggregation](./asynchronous-communication/aggregation)
+    - [Apache Kafka](./asynchronous-communication/aggregation/Kafka)  
 ---
 
 ## 🎯 Goals
