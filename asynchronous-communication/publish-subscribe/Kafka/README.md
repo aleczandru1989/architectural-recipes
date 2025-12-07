@@ -81,7 +81,7 @@ Follow these steps to run the recipe locally:
 
 2. **Navigate to recipe**
    ```bash
-   cd architectural-recipes/asynchronous-communication/point-to-point/Kafka
+   cd architectural-recipes/asynchronous-communication/publish-subscribe/Kafka
 
 
 3. **Run Docker Compose** 
