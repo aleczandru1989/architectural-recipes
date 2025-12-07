@@ -1,29 +1,56 @@
-﻿
+﻿using System.Text.Json;
+using Confluent.Kafka;
+using Filter.Abstractions.Messages;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Confluent.Kafka;
-using System.Text.Json;
 
-namespace Consumer.Services;
+namespace Consumer.Consummer;
 
 public class OrderConsumerService : BackgroundService
 {
     private readonly ILogger<OrderConsumerService> _logger;
-    private readonly IConsumer<string, string> _consumer;
+    private IConsumer<string, string> _consumer;
     private readonly string _consumerInstanceId;
-
-    private string TOPIC_NAME = "app.order.publish";
-
+    private readonly string _topicName;
+    
     public OrderConsumerService(ILogger<OrderConsumerService> logger)
     {
         _logger = logger;
-        var instanceName = Environment.GetEnvironmentVariable("CONSUMER_INSTANCE_NAME") ?? Environment.MachineName;
-        _consumerInstanceId = instanceName + "-" + Guid.NewGuid().ToString("N")[..8];
+        _consumerInstanceId = CreateConsummerInstanceId();
+        _topicName = CreateTopicName();
+        _consumer = ConfigureConsumer();
+    }
 
-        var kafkaBootstrapServers = Environment.GetEnvironmentVariable("KAFKA_BOOTSTRAP_SERVERS") ?? "localhost:9092";
-        var consumerGroupId = Environment.GetEnvironmentVariable("CONSUMER_GROUP_ID") ?? "app";
+    private string CreateConsummerInstanceId()
+    {
+        string instanceName = Environment.GetEnvironmentVariable("CONSUMER_INSTANCE_NAME") ?? Environment.MachineName;
+        instanceName+= "-" + Guid.NewGuid().ToString("N")[..8];
+        
+        _logger.LogInformation($"STARTED: CONSUMER with consumerInstanceId: {instanceName}");
+        
+        return instanceName;
+    }
 
-        var config = new ConsumerConfig
+    private string CreateTopicName()
+    {
+        string country = Environment.GetEnvironmentVariable("CONSUMER_GROUP_COUNTRY") ?? "RO";
+        
+        string topicName =  $"app.order.publish.{country}";
+
+        _logger.LogInformation($"STARTED: CONSUMER with topic subscription in: {topicName}");
+
+        return topicName;
+    }
+
+    private IConsumer<string, string> ConfigureConsumer()
+    {
+        string kafkaBootstrapServers = Environment.GetEnvironmentVariable("KAFKA_BOOTSTRAP_SERVERS") ?? "localhost:9092";
+        _logger.LogInformation($"STARTED: CONSUMER wwith kafka bootstrap server: {kafkaBootstrapServers}");
+
+        string consumerGroupId = Environment.GetEnvironmentVariable("CONSUMER_GROUP_ID") ?? "app";
+        _logger.LogInformation($"STARTED: CONSUMER with consumer group id: {consumerGroupId}");
+
+        ConsumerConfig config = new ConsumerConfig
         {
             BootstrapServers = kafkaBootstrapServers,
             GroupId = consumerGroupId,
@@ -36,7 +63,7 @@ public class OrderConsumerService : BackgroundService
             EnablePartitionEof = false
         };
 
-        _consumer = new ConsumerBuilder<string, string>(config)
+        return new ConsumerBuilder<string, string>(config)
             .SetErrorHandler((_, e) => _logger.LogError($"Consumer error: {e.Reason}"))
             .SetPartitionsAssignedHandler((c, partitions) =>
             {
@@ -51,9 +78,8 @@ public class OrderConsumerService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _consumer.Subscribe(TOPIC_NAME);
-        _logger.LogInformation($"[CONSUMER {_consumerInstanceId}] Started consuming messages from topic: {TOPIC_NAME}");
-
+        _consumer.Subscribe(_topicName);
+        
         try
         {
             while (!stoppingToken.IsCancellationRequested)
@@ -106,7 +132,7 @@ public class OrderConsumerService : BackgroundService
             // Simulate processing time
             await Task.Delay(Random.Shared.Next(1000, 3000));
             
-            _logger.LogInformation($"[CONSUMER {_consumerInstanceId}] Successfully processed order: {orderMessage?.OrderId}");
+            _logger.LogInformation($"[CONSUMER {_consumerInstanceId}] Successfully processed order: {orderMessage?.OrderId} with product: {orderMessage?.Product} in country {orderMessage.Country}");
         }
         catch (JsonException ex)
         {
@@ -123,10 +149,4 @@ public class OrderConsumerService : BackgroundService
         _consumer?.Dispose();
         base.Dispose();
     }
-}
-
-public class OrderMessage
-{
-    public string OrderId { get; set; } = string.Empty;
-    public string Product { get; set; } = string.Empty;
 }

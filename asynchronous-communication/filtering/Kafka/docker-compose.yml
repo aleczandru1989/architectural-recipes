@@ -55,8 +55,8 @@ services:
 
   producer:
     build:
-      context: ./app/Producer
-      dockerfile: Dockerfile
+      context: ./app
+      dockerfile: Producer/Dockerfile
     container_name: kafka-producer
     depends_on:
       kafka:
@@ -78,8 +78,8 @@ services:
 
   consumer-1:
     build:
-      context: ./app/Consumer
-      dockerfile: Dockerfile
+      context: ./app
+      dockerfile: Consumer/Dockerfile
     container_name: kafka-consumer-1
     depends_on:
       kafka:
@@ -90,12 +90,13 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
       - CONSUMER_GROUP_ID=app-consumer-1
       - CONSUMER_INSTANCE_NAME=consumer-1
+      - CONSUMER_GROUP_COUNTRY=RO
     restart: unless-stopped
 
   consumer-2:
     build:
-      context: ./app/Consumer
-      dockerfile: Dockerfile
+      context: ./app
+      dockerfile: Consumer/Dockerfile
     container_name: kafka-consumer-2
     depends_on:
       kafka:
@@ -106,12 +107,13 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
       - CONSUMER_GROUP_ID=app-consumer-1
       - CONSUMER_INSTANCE_NAME=consumer-2
+      - CONSUMER_GROUP_COUNTRY=RO
     restart: unless-stopped
 
   consumer-3:
     build:
-      context: ./app/Consumer
-      dockerfile: Dockerfile
+      context: ./app
+      dockerfile: Consumer/Dockerfile
     container_name: kafka-consumer-3
     depends_on:
       kafka:
@@ -122,12 +124,13 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
       - CONSUMER_GROUP_ID=app-consumer-2
       - CONSUMER_INSTANCE_NAME=consumer-3
+      - CONSUMER_GROUP_COUNTRY=US
     restart: unless-stopped
 
   consumer-4:
     build:
-      context: ./app/Consumer
-      dockerfile: Dockerfile
+      context: ./app
+      dockerfile: Consumer/Dockerfile
     container_name: kafka-consumer-4
     depends_on:
       kafka:
@@ -138,12 +141,13 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
       - CONSUMER_GROUP_ID=app-consumer-2
       - CONSUMER_INSTANCE_NAME=consumer-4
+      - CONSUMER_GROUP_COUNTRY=US
     restart: unless-stopped
 
   consumer-5:
     build:
-      context: ./app/Consumer
-      dockerfile: Dockerfile
+      context: ./app
+      dockerfile: Consumer/Dockerfile
     container_name: kafka-consumer-5
     depends_on:
       kafka:
@@ -154,12 +158,13 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
       - CONSUMER_GROUP_ID=app-consumer-3
       - CONSUMER_INSTANCE_NAME=consumer-5
+      - CONSUMER_GROUP_COUNTRY=EU
     restart: unless-stopped
 
   consumer-6:
     build:
-      context: ./app/Consumer
-      dockerfile: Dockerfile
+      context: ./app
+      dockerfile: Consumer/Dockerfile
     container_name: kafka-consumer-6
     depends_on:
       kafka:
@@ -170,8 +175,23 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
       - CONSUMER_GROUP_ID=app-consumer-3
       - CONSUMER_INSTANCE_NAME=consumer-6
+      - CONSUMER_GROUP_COUNTRY=EU
     restart: unless-stopped
-
+  filter:
+    build:
+      context: ./app
+      dockerfile: EventFilter/Dockerfile
+    container_name: kafka-filter
+    depends_on:
+      kafka:
+        condition: service_healthy
+      producer:
+        condition: service_started
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - CONSUMER_GROUP_ID=app-filter
+      - CONSUMER_INSTANCE_NAME=filter
+    restart: unless-stopped
 networks:
   default:
     name: kafka-network

@@ -15,4 +15,12 @@
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
+    </ItemGroup>
+
 </Project>

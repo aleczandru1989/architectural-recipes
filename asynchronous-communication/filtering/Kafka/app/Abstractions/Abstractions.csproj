@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>Filter.Abstractions</RootNamespace>
     </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="Streamiz.Kafka.Net" Version="1.7.1" />
-    </ItemGroup>
+
 </Project>

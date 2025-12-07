@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DefaultNamespace;
+namespace Producer.Controllers;
 
 public class HealthController  :ControllerBase
 {

@@ -20,7 +20,10 @@ public static class KafkaConfig
 
         TopicSpecification[] topicsToCreate =
         [
-            new TopicSpecification { Name = TopicName, NumPartitions = 6, ReplicationFactor = 1 }
+            new TopicSpecification { Name = TopicName, NumPartitions = 6, ReplicationFactor = 1 },
+            new TopicSpecification { Name = $"{TopicName}.RO", NumPartitions = 1, ReplicationFactor = 1 },
+            new TopicSpecification { Name = $"{TopicName}.US", NumPartitions = 1, ReplicationFactor = 1 },
+            new TopicSpecification { Name = $"{TopicName}.EU", NumPartitions = 1, ReplicationFactor = 1 }
         ];
 
         try

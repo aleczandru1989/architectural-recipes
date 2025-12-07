@@ -1,7 +1,10 @@
 using System.Text.Json;
 using Confluent.Kafka;
+using Filter.Abstractions.Messages;
 using Microsoft.AspNetCore.Mvc;
 using Producer.Config;
+
+namespace Producer.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -44,10 +47,4 @@ public class OrderController : ControllerBase
             return StatusCode(500, new { Error = ex.Error.Reason });
         }
     }
-}
-
-public class OrderMessage
-{
-    public string OrderId { get; set; } = string.Empty;
-    public string Product { get; set; } = string.Empty;
 }

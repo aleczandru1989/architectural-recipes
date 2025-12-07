@@ -1,7 +1,7 @@
 # 📬 Content Based Filtering
 
 ## 📖 Overview
-This recipe demonstrates content‑based filtering using Apache Kafka with Streamiz\.Kafka\.Net.
+This recipe demonstrates **content‑based filtering** using Apache Kafka with Streamiz\.Kafka\.Net.
 
 The goal is to show how a producer can publish all messages into a common Kafka topic, and how a filtering pipeline can route those messages into region‑specific topics based on their content. Unlike publish/subscribe, where every consumer group receives the full stream, filtering ensures that only relevant messages are delivered to each group.
 

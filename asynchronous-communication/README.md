@@ -23,7 +23,7 @@ By studying and applying these recipes, architects and developers can better und
 | Filtering               | ✅ Consumers filter messages; Kafka Streams supports advanced filtering       | ✅ Supported via bindings, selectors, and consumer-side filtering         |
 | Aggregation             | ✅ Supported via Kafka Streams / ksqlDB                                       | ✅ Supported via plugins or consumer logic                                |
 | Transformation          | ✅ Supported via Kafka Streams / Connect transforms                           | ✅ Supported via message converters, plugins, or consumer logic           |
-| Dead Letter Queue       | ✅ Supported via DLQ topics (commonly used in Kafka Connect)                  | ✅ Native DLX (Dead Letter Exchange) support                              |
+| Dead Letter Queue       | ❌ No native delay; Implemented via DLQ topics                                | ✅ Native DLX (Dead Letter Exchange) support                              |
 | Competing Consumers     | ✅ Multiple consumers in a group share partitions                             | ✅ Multiple consumers share a queue, broker load-balances                 |
 | Priority Queues         | ❌ Not native; emulate via separate topics                                    | ✅ Native support for priority queues                                     |
 | Delayed / Scheduled Delivery | ❌ No native delay; emulate with timestamps or external schedulers       | ✅ Supported via delayed message exchange plugin                          |
