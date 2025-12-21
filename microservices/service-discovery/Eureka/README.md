@@ -20,61 +20,59 @@ This recipe demonstrates how to use **Netflix Eureka** as a Service Registry to 
 
 ```mermaid
 flowchart TD
-    subgraph External_Network [External Traffic]
+    subgraph External_Network [External Traffic Layer]
         User([User Browser]) --> Nginx[NGINX / External LB]
     end
 
-    subgraph Service_Discovery [Service Discovery Layer]
-        Eureka[**Eureka Server**<br/>localhost:8761]
-    end
-
-    subgraph Internal_Network [Internal Ecosystem]
-        %% Resilient Gateway Layer
-        subgraph Gateway_Cluster [API Gateway Cluster]
-            GW1[Gateway Inst 1]
-            GW2[Gateway Inst 2]
-        end
+    subgraph Internal_Network [Internal Ecosystem Layer]
         
-        %% Catalog Service Cluster (The Caller)
+        %% Service Discovery Cluster
+        subgraph Discovery_Layer [Service Discovery]
+            Eureka[**Eureka Server**]
+        end
+
+        %% Catalog Service Cluster
         subgraph Catalog_Cluster [Catalog Service Cluster]
             Cat1[Catalog Inst 1]
             Cat2[Catalog Inst 2]
             Cat3[Catalog Inst 3]
             LB_Logic{Steeltoe <br/> LB Logic}
+            
+            Cat1 & Cat2 & Cat3 --> LB_Logic
         end
 
-        %% Order Service Cluster (The Dependency)
+        %% Order Service Cluster
         subgraph Order_Cluster [Order Service Cluster]
             Ord1[Order Inst 1]
             Ord2[Order Inst 2]
             Ord3[Order Inst 3]
         end
 
-        %% 1. Discovery Steps
-        Gateway_Cluster -- "1. Fetch Registry" --> Eureka
-        Catalog_Cluster -- "3. Fetch Registry" --> Eureka
+        %% 1. SIMPLIFIED DISCOVERY FLOW
+        %% Using a single junction to represent the Fetch/Response for all instances
+        Cat1 & Cat2 & Cat3 <== "1. Fetch Service Registry & Response" ==> Eureka
         
-        %% 2. Entry Traffic
-        Nginx -.-> GW1 & GW2
-        GW1 & GW2 -. "2. Route to Catalog" .-> Catalog_Cluster
+        %% 2. ENTRY TRAFFIC
+        Nginx -. "2. Balanced Ingress" .-> Cat1 & Cat2 & Cat3
         
-        %% 4. DIRECT DEPENDENCY & LOAD BALANCING
-        %% Showing that Catalog Service handles the distribution
-        Cat1 ==> LB_Logic
-        Cat2 ==> LB_Logic
-        Cat3 ==> LB_Logic
-
-        LB_Logic == "Balanced Request 1" ==> Ord1
-        LB_Logic == "Balanced Request 2" ==> Ord2
-        LB_Logic == "Balanced Request 3" ==> Ord3
-        LB_Logic == "Balanced Request 4" ==> Ord1
+        %% 3. BALANCED INTERNAL CALL
+        LB_Logic ==>|3. Client-Side LB Call| Ord1 & Ord2 & Ord3
     end
 
     %% Styling
     classDef default stroke:#333,stroke-width:2px;
-    class Eureka,GW1,GW2,Cat1,Cat2,Cat3,Ord1,Ord2,Ord3,LB_Logic default;
-    classDef cluster_style fill:#fdfdfd,stroke:#999,stroke-dasharray: 5 5;
-    class Gateway_Cluster,Catalog_Cluster,Order_Cluster cluster_style;
+    class Eureka,Cat1,Cat2,Cat3,Ord1,Ord2,Ord3,LB_Logic default;
+    
+    %% Outer Containers - Yellow Background
+    style External_Network fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Internal_Network fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+
+    %% Inner Service Clusters & Discovery - White Background
+    style Catalog_Cluster fill:#FFFFFF,stroke:#999,stroke-width:2px,stroke-dasharray: 5 5
+    style Order_Cluster fill:#FFFFFF,stroke:#999,stroke-width:2px,stroke-dasharray: 5 5
+    style Discovery_Layer fill:#FFFFFF,stroke:#999,stroke-width:2px,stroke-dasharray: 5 5
+    
+    %% Logic Node Highlight
     style LB_Logic fill:#e1f5fe,stroke:#01579b
 ```
 
