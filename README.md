@@ -35,6 +35,8 @@ We demonstrate multiple recipes, each documented in its own folder:
     - [Apache Kafka](./asynchronous-communication/filtering-and-routing/Kafka)  
   - [Aggregation and Batch Processing](./asynchronous-communication/aggregation-and-batch-processing)
     - [Apache Kafka](./asynchronous-communication/aggregation-and-batch-processing/Kafka)  
+- [Microservices](./microservices)  
+  - [Microservices](./service-discovery/Eureka) 
 ---
 
 ## 🎯 Goals
