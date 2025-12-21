@@ -77,3 +77,41 @@ flowchart TD
     class Gateway_Cluster,Catalog_Cluster,Order_Cluster cluster_style;
     style LB_Logic fill:#e1f5fe,stroke:#01579b
 ```
+
+## 🛠️ Technologies Used
+
+**🛰️ Netflix Eureka Server**  
+- Serves as the central service registry for all microservices.
+
+**🌉 ASP.NET Core & Steeltoe**  
+- Allows .NET services to register as Eureka clients.  
+- Provides internal load balancing and service discovery.
+
+**🌀 NGINX**  
+- Functions as the external, high‑level load balancer.  
+- Distributes incoming traffic across the API Gateway cluster.
+
+**🐳 Docker Compose**  
+- Orchestrates the entire multi‑container microservices environment.
+
+## ▶️ How to Use
+
+Follow these steps to run the recipe locally:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/aleczandru1989/architectural-recipes.git.git
+
+
+2. **Navigate to recipe**
+   ```bash
+   cd microservices/service-discovery/Eureka
+
+
+3. **Run Docker Compose** 
+   ```bash
+   docker compose up -d --build
+
+5. **Run Browser**
+    ```bash
+    curl http://localhost:8081/product/order
