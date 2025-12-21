@@ -36,7 +36,9 @@ We demonstrate multiple recipes, each documented in its own folder:
   - [Aggregation and Batch Processing](./asynchronous-communication/aggregation-and-batch-processing)
     - [Apache Kafka](./asynchronous-communication/aggregation-and-batch-processing/Kafka)  
 - [Microservices](./microservices)  
-  - [Microservices](./service-discovery/Eureka) 
+  - [Service Discovery & Load Balancing](./microservices/service-discovery-and-load-balacing) 
+    - [Eureka](./microservices/service-discovery-and-load-balacing/Eureka) 
+    - [Consul](./microservices/service-discovery-and-load-balacing/Consul) 
 ---
 
 ## 🎯 Goals
