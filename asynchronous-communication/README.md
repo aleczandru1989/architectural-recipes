@@ -12,6 +12,11 @@ These recipes provide practical examples of how asynchronous communication can b
 By studying and applying these recipes, architects and developers can better understand the trade-offs of each communication style. Whether the need is simple point-to-point messaging or complex aggregation pipelines, these examples serve as reproducible building blocks for real-world systems.
 
 ---
+
+## 📂 Pattern Recipes
+
+- [Dead Letter Queue](./dead-letter-queue/README.md) → Isolate messages that cannot be processed after the retry policy, then investigate and recover them safely.
+- [Transactional Outbox](./transactional-outbox/README.md) → Save a data change and its outgoing event in one local transaction, then relay the event to the broker so it is not lost.
 ## ⏩ Communication Patterns
 
 ### Legend
@@ -82,6 +87,5 @@ Transformation is a messaging pattern where the content or structure of a messag
 - Producer → Broker → Consumer (with transformer)  
 - Ensures messages are usable and consistent across systems.  
 - Useful for interoperability, enrichment, and data quality improvements.
-
 
 

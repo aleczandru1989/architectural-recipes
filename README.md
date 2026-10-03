@@ -22,11 +22,19 @@ Each recipe includes:
 
 We demonstrate multiple recipes, each documented in its own folder:
 
+- [Architectural Patterns](./architectural-patterns)
+  - [Bulkhead Isolation](./architectural-patterns/bulkhead-isolation)
+  - [Circuit Breaker](./architectural-patterns/circuit-breaker)
+  - [Domain-Driven Design](./architectural-patterns/domain-driven-design)
+  - [Rate Limiting](./architectural-patterns/rate-limiting)
+  - [Saga Pattern](./architectural-patterns/saga-pattern)
 - [Microfrontend Composition](./microfrontend-composition)  
   - [Client Side Integration Classic](./microfrontend-composition/client-side-integration-classic) 
   - [Server Side Integration via ESI](./microfrontend-composition/server-side-integration-esi) 
   
 - [Asynchronous Communication](./asynchronous-communication)  
+  - [Dead Letter Queue](./asynchronous-communication/dead-letter-queue)
+  - [Transactional Outbox](./asynchronous-communication/transactional-outbox)
   - [Point to Point](./asynchronous-communication/point-to-point)
     - [Apache Kafka](./asynchronous-communication/point-to-point/Kafka)   
   - [Publish/Subscribe](./asynchronous-communication/publish-subscribe)
