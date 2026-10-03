@@ -47,6 +47,11 @@ We demonstrate multiple recipes, each documented in its own folder:
   - [Service Discovery & Load Balancing](./microservices/service-discovery-and-load-balacing) 
     - [Eureka](./microservices/service-discovery-and-load-balacing/Eureka) 
     - [Consul](./microservices/service-discovery-and-load-balacing/Consul) 
+- [Technologies](./technologies)
+  - [Message Brokers](./technologies/message-brokers)
+    - [Kafka Fundamentals](./technologies/message-brokers/kafka-fundamentals)
+    - [RabbitMQ Fundamentals](./technologies/message-brokers/rabbitmq-fundamentals)
+    - [Kafka vs RabbitMQ](./technologies/message-brokers/kafka-vs-rabbitmq)
 ---
 
 ## 🎯 Goals
